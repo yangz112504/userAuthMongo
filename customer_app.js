@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');            // MongoDB ODM library
 const Customers = require('./customer');         // Imported MongoDB model for 'customers'
 const express = require('express');              // Express.js web framework
-const session = require('express-session');      // Express session middleware
 const bodyParser = require('body-parser');       // Middleware for parsing JSON requests
 const path = require('path');                    // Node.js path module for working with file and directory paths
 
@@ -24,13 +23,6 @@ app.use('/static', express.static(path.join(".", 'frontend')));
 
 // Middleware to handle URL-encoded form data
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Express session middleware configuration
-app.use(session({
-    resave: false,
-    saveUninitialized: false,
-    secret: "itsasecret"
-}));
 
 // POST endpoint for user login
 app.post('/api/login', async (req, res) => {
@@ -67,9 +59,7 @@ app.post('/api/add_customer', async (req, res) => {
     // Saving the new customer to the MongoDB 'customers' collection
     await customer.save();
 
-    // Setting the session username and serving the home page
-    req.session.username = data['user_name'];
-    res.sendFile(path.join(__dirname, 'frontend', 'home.html'));
+    res.send("Customer added successfully")
 });
 
 // GET endpoint for the root URL, serving the home page
