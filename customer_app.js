@@ -46,7 +46,7 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/add_customer', async (req, res) => {
     const data = req.body;
     console.log(data)
-    const documents = await Customers.find({ user_name: user_name});
+    const documents = await Customers.find({ user_name: data['user_name']});
     if (documents.length > 0) {
         res.send("User already exists");
     }
