@@ -36,11 +36,9 @@ app.post('/api/login', async (req, res) => {
 
     // If a matching user is found, set the session username and serve the home page
     if (documents.length > 0) {
-        req.session.username = documents[0]['user_name'];
-        res.sendFile(path.join(__dirname, 'frontend', 'home.html'));
+        res.send("User Logged In");
     } else {
-        // If no matching user is found, serve the login page
-        res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
+        res.send("User Information incorrect");
     }
 });
 
