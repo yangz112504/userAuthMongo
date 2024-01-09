@@ -6,7 +6,6 @@
 
 let checkSession = ()=>{
   let curr_user = sessionStorage.getItem("username");
-  alert(curr_user);
 
   if (curr_user && curr_user !== "") {
     document.getElementById("loginlogout").innerHTML = 
@@ -15,7 +14,7 @@ let checkSession = ()=>{
   } else {
     document.getElementById("loginlogout").innerHTML = 
     '<a style="margin-left:10px;font-size:larger" href="/static/login.html">Login</a>'+
-    '<a style="margin-left:10px;font-size:larger"  href="/static/registration.html">Register</a>'
+    '<a style="margin-left:10px;font-size:larger"  href="/static/register.html">Register</a>'
   }
  }
 </script>
